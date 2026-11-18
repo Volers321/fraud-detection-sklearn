@@ -1,0 +1,274 @@
+{
+  "data": {
+    "n_cards": 2500,
+    "days": 90,
+    "seed": 0,
+    "n_transactions": 208206,
+    "fraud_rate": 0.0051,
+    "fraud_by_pattern": {
+      "takeover": 336,
+      "stolen_card": 329,
+      "card_testing": 282,
+      "mule_cashout": 117
+    },
+    "split_days": {
+      "train": "0-59",
+      "validation": "60-74",
+      "test": "75-89"
+    },
+    "n_fraud": {
+      "train": 613,
+      "validation": 181,
+      "test": 270
+    }
+  },
+  "models": {
+    "isolation_forest": {
+      "n": 34556,
+      "n_fraud": 270,
+      "pr_auc": 0.6683,
+      "alert_rate": 0.0084,
+      "recall": 0.6259,
+      "precision": 0.5808,
+      "fraud_amount_caught_share": 0.7848,
+      "net_savings_pln": 172555.0,
+      "recall_by_pattern": {
+        "card_testing": {
+          "n": 44,
+          "recall": 0.909
+        },
+        "mule_cashout": {
+          "n": 117,
+          "recall": 0.855
+        },
+        "stolen_card": {
+          "n": 57,
+          "recall": 0.246
+        },
+        "takeover": {
+          "n": 52,
+          "recall": 0.288
+        }
+      },
+      "pr_auc_known_patterns": 0.4292
+    },
+    "logistic": {
+      "n": 34556,
+      "n_fraud": 270,
+      "pr_auc": 0.8362,
+      "alert_rate": 0.0069,
+      "recall": 0.7481,
+      "precision": 0.8523,
+      "fraud_amount_caught_share": 0.6939,
+      "net_savings_pln": 152667.0,
+      "recall_by_pattern": {
+        "card_testing": {
+          "n": 44,
+          "recall": 1.0
+        },
+        "mule_cashout": {
+          "n": 117,
+          "recall": 0.684
+        },
+        "stolen_card": {
+          "n": 57,
+          "recall": 0.86
+        },
+        "takeover": {
+          "n": 52,
+          "recall": 0.558
+        }
+      },
+      "pr_auc_known_patterns": 0.8422
+    },
+    "hist_gb": {
+      "n": 34556,
+      "n_fraud": 270,
+      "pr_auc": 0.9013,
+      "alert_rate": 0.0062,
+      "recall": 0.737,
+      "precision": 0.9256,
+      "fraud_amount_caught_share": 0.531,
+      "net_savings_pln": 116644.0,
+      "recall_by_pattern": {
+        "card_testing": {
+          "n": 44,
+          "recall": 1.0
+        },
+        "mule_cashout": {
+          "n": 117,
+          "recall": 0.47
+        },
+        "stolen_card": {
+          "n": 57,
+          "recall": 0.93
+        },
+        "takeover": {
+          "n": 52,
+          "recall": 0.904
+        }
+      },
+      "pr_auc_known_patterns": 0.9686,
+      "pr_auc_ci95": [
+        0.842,
+        0.948
+      ],
+      "recall_ci95": [
+        0.635,
+        0.847
+      ]
+    },
+    "hybrid_mean": {
+      "n": 34556,
+      "n_fraud": 270,
+      "pr_auc": 0.8804,
+      "alert_rate": 0.0074,
+      "recall": 0.8037,
+      "precision": 0.851,
+      "fraud_amount_caught_share": 0.8564,
+      "net_savings_pln": 188601.0,
+      "recall_by_pattern": {
+        "card_testing": {
+          "n": 44,
+          "recall": 1.0
+        },
+        "mule_cashout": {
+          "n": 117,
+          "recall": 0.88
+        },
+        "stolen_card": {
+          "n": 57,
+          "recall": 0.596
+        },
+        "takeover": {
+          "n": 52,
+          "recall": 0.692
+        }
+      },
+      "pr_auc_known_patterns": 0.8146,
+      "pr_auc_ci95": [
+        0.834,
+        0.916
+      ],
+      "recall_ci95": [
+        0.737,
+        0.853
+      ]
+    }
+  },
+  "hist_gb_params": {
+    "min_samples_leaf": 20,
+    "max_leaf_nodes": 63,
+    "max_iter": 500,
+    "learning_rate": 0.03,
+    "l2_regularization": 10.0,
+    "class_weight": "none"
+  },
+  "cost_rule_hist_gb": {
+    "alert_rate": 0.007,
+    "recall": 0.7667,
+    "precision": 0.8554,
+    "net_savings_pln": 148863.0,
+    "fraud_amount_caught_share": 0.6769,
+    "recall_by_pattern": {
+      "card_testing": {
+        "n": 44,
+        "recall": 0.568
+      },
+      "mule_cashout": {
+        "n": 117,
+        "recall": 0.632
+      },
+      "stolen_card": {
+        "n": 57,
+        "recall": 0.982
+      },
+      "takeover": {
+        "n": 52,
+        "recall": 1.0
+      }
+    }
+  },
+  "ablation_hist_gb": {
+    "without_velocity": {
+      "pr_auc_known_patterns": 0.9049,
+      "recall": 0.7259,
+      "recall_by_pattern": {
+        "card_testing": 1.0,
+        "mule_cashout": 0.47,
+        "stolen_card": 0.965,
+        "takeover": 0.808
+      }
+    },
+    "without_geo": {
+      "pr_auc_known_patterns": 0.8167,
+      "recall": 0.6333,
+      "recall_by_pattern": {
+        "card_testing": 1.0,
+        "mule_cashout": 0.47,
+        "stolen_card": 0.386,
+        "takeover": 0.962
+      }
+    },
+    "without_device_ip": {
+      "pr_auc_known_patterns": 0.8813,
+      "recall": 0.663,
+      "recall_by_pattern": {
+        "card_testing": 0.886,
+        "mule_cashout": 0.47,
+        "stolen_card": 0.965,
+        "takeover": 0.577
+      }
+    },
+    "without_card_history": {
+      "pr_auc_known_patterns": 0.9676,
+      "recall": 0.7296,
+      "recall_by_pattern": {
+        "card_testing": 1.0,
+        "mule_cashout": 0.47,
+        "stolen_card": 0.93,
+        "takeover": 0.865
+      }
+    }
+  },
+  "drift_days_83_plus": {
+    "n_mule_rows": 76,
+    "stale_model_recall_top_budget": 0.586,
+    "refreshed_model_recall_top_budget": 0.609
+  },
+  "permutation_importance_val": [
+    {
+      "feature": "dist_home_km",
+      "pr_auc_drop": 0.2493
+    },
+    {
+      "feature": "cnt_1h",
+      "pr_auc_drop": 0.0634
+    },
+    {
+      "feature": "category",
+      "pr_auc_drop": 0.0544
+    },
+    {
+      "feature": "log_amount",
+      "pr_auc_drop": 0.0486
+    },
+    {
+      "feature": "new_device",
+      "pr_auc_drop": 0.0458
+    },
+    {
+      "feature": "log_minutes_since_prev",
+      "pr_auc_drop": 0.0338
+    },
+    {
+      "feature": "dist_prev_km",
+      "pr_auc_drop": 0.023
+    },
+    {
+      "feature": "channel",
+      "pr_auc_drop": 0.0199
+    }
+  ],
+  "runtime_s": 635.7
+}

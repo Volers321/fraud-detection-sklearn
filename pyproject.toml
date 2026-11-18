@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fraud-detection-sklearn"
+version = "0.1.0"
+description = "Card-fraud detection with scikit-learn: leak-free features, temporal evaluation, alert budget, cost-based decisions, drift to a new attack."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Wiktor Ligmanowski" }]
+dependencies = ["numpy>=1.26", "pandas>=2.1", "scikit-learn>=1.6", "matplotlib>=3.8"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+fraudsk = "fraudsk.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 110
+extend-exclude = ["src/fraudsk/data.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501", "E731"]
